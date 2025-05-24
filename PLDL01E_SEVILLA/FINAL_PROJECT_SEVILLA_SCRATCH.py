@@ -22,7 +22,7 @@ class Transaction:
         return f"{self.__date}: {self.__category} - ${self.__amount:.2f}"
 
 
-# Inheritance: Expense class extends Transaction
+# Expense class extends Transaction
 class Expense(Transaction):
     # Represents an expense
 
@@ -34,7 +34,7 @@ class Expense(Transaction):
         return f"Expense - {super().display()}"
 
 
-# Inheritance: Income class extends Transaction
+# Income class extends Transaction
 class Income(Transaction):
 
     def __init__(self, amount, category, date=None):
@@ -46,17 +46,17 @@ class Income(Transaction):
 
 
 class FinanceTracker:
-    """Manages transactions and summary reports"""  # Separate class to manage transactions
+     # Separate class to manage transactions
 
     def __init__(self):
-        self.transactions = []  # Composition: Tracker maintains a list of transaction objects
+        self.transactions = []  # Tracker maintains a list of transaction objects
 
     def add_transaction(self, transaction):
-        """Encapsulation: Transactions are stored within the class"""
+        # Encapsulation, Transactions are stored within the class
         self.transactions.append(transaction)
 
     def delete_transaction(self, index):
-        """Handles deletion of transactions with validation"""
+        # Handles deletion of transactions with validation
         if 0 <= index < len(self.transactions):
             self.transactions.pop(index)  # Remove transaction by index
             print("Transaction deleted successfully.")
@@ -104,20 +104,20 @@ def main():
         elif choice == "2":
             amount = float(input("Enter income amount: "))
             category = input("Enter category (Salary, Bonus, etc.): ")
-            tracker.add_transaction(Income(amount, category))  # Polymorphism: Using inherited class
+            date = input("Enter Expense Date: ")
+            tracker.add_transaction(Income(amount, category, date))  # Polymorphism: Using inherited class
 
         elif choice == "3":
             tracker.display_transactions()
 
         elif choice == "4":
-            index = int(input("Enter transaction index to delete: "))
+            index = int(input("Enter transaction index / number to delete: "))
             tracker.delete_transaction(index)
 
         elif choice == "5":
             tracker.view_summary()
 
         elif choice == "6":
-            print("Exiting... Have a financially sound day!")
             break
 
         else:
